@@ -19,13 +19,40 @@
                 <th>View</th>
                 <th>Edit</th>
             </tr>
+
+
+
         <thead>
         <tbody>
+
+                        <th scope="row">Beverages</th>
+                <td>wine</td>
+                <td>w</td>
+               
+                <td>
+                    
+                    <a href ='/editbucket?id={{item.id}}' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                </td>
+
+                <td>
+                    <td>
+                        
+ <a href ='/delete_bucket?id={{item.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+</td>
+
+                </td>
+
+                <td>
+                    <a href ="recipe_itemlist.html" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-eye-open"></i> View Items</a>
+                </td>                
+            </tr>
         </tbody>
-    
+        
+        <td>
+        </tr>
+        </tbody>
     </table>
     </div>
-
 </form>
 </body>
 </html>
