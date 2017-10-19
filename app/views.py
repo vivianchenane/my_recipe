@@ -175,7 +175,14 @@ def deletec():
 	del recipe_categories[index_to_delete]
 	return redirect('/recipecategorylist')
 	
-
+@app.route('/delete_category_test')
+def deletecTest():
+	id=request.args.get('id')
+	if id==None:
+		 return redirect('/recipecategorylist')
+	index_to_delete = int(id)-1
+	del recipe_categories[index_to_delete]
+	return redirect('/recipecategorylist')
 
 	
 
