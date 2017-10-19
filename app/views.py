@@ -1,5 +1,5 @@
 from app import app
-from flask import redirect,request,render_template,url_for, session, flash, render_template
+from flask import redirect,request,render_template,url_for, session, flash
 from .forms import LoginForm, RegisterForm
 
 database_users = {}
@@ -28,10 +28,12 @@ def register():
 		username = request.form.get('username')
 		password = request.form.get('password')
 		confirmpassword = request.form.get('cpassword')
-		print('Form submitted her')
-		print(confirmpassword)
+		
+	
 	if password != confirmpassword:
-			return redirect('/register')
+		flash(u'password dont match')
+		return redirect('/register')
+
 
 	database_users[username] = dict(email=email, passwword=password)
 	session['username'] = username
@@ -68,7 +70,7 @@ def recipe_itemlist():
 
 @app.route('/add_recipeitem' ,methods= ['GET', 'POST'])
 def add_recipeitem():
-	id = request.args.get(id)
+	id = request.args.get('id')
 	usern = session['username']
 	if request.method == 'POST':
 		name = request.form.get('name')
@@ -85,9 +87,9 @@ def add_recipeitem():
 		for item in recipe_list_items:
 			if item['user'] == str(usern) and item['category']==category:
 				recipeitems_to_view.append(item)
-			else:
-			    return render_template('recipeitem_list.html', title='Item List',category_list_itemss=recipeitems_to_view,categoryr=category_to_view)
-		return render_template( 'add_recipeitem.html', title='add item', category=id)
+		return render_template('recipe_itemlist.html', title='Item List',category_list_itemss=recipeitems_to_view,category=category_to_view)
+		
+	return render_template( 'add_recipeitem.html', title='add item', category=id)
 
 @app.route('/add_recipecategory')
 def addrecipecategory():
@@ -130,8 +132,8 @@ def view_recipeitems():
 	for item in recipe_list_items:
 		if item['user'] ==str(uname) and item['category'] ==id:
 			recipeitems_to_view.append(item)
-		else:
-			return render_template('recipe_itemlist.html', title=' Recipe Item List',category_list_itemss=recipeitems_to_view, category=category_to_view)
+	
+	return render_template('recipe_itemlist.html', title=' Recipe Item List',category_list_itemss=recipeitems_to_view, category=category_to_view)
 
 @app.route('/editcategory')
 def edit_category():
@@ -161,8 +163,8 @@ def update_category():
 		for item in recipe_categories:
 			if item['user']==str(uname):
 				categories_to_view.append(item)
-			else:
-				return render_template('recipe_categorylist.html', title='Recipe List',category_items=categories_to_view)      
+		
+		return render_template('recipe_categorylist.html', title='Recipe List',category_items=categories_to_view)      
 
 @app.route('/delete_category')
 def deletec():
@@ -173,7 +175,14 @@ def deletec():
 	del recipe_categories[index_to_delete]
 	return redirect('/recipecategorylist')
 	
-
+@app.route('/delete_category_test')
+def deletecTest():
+	id=request.args.get('id')
+	if id==None:
+		 return redirect('/recipecategorylist')
+	index_to_delete = int(id)-1
+	del recipe_categories[index_to_delete]
+	return redirect('/recipecategorylist')
 
 	
 
