@@ -22,6 +22,28 @@
               <th scope="row">{{item.id}}</th>
               <td>{{item.name}}</td>
               <td>{{item.description}}</td>
+              <td>
+                         <a href ='/editcategory?id={{item.id}}' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                </td>
+
+                <td>
+                    <td>
+                        
+ <a href ='/delete_category?id={{item.id}}' class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+</td>
+
+                </td>
+
+                <td>
+                    <a href ='/viewitems?id={{item.id}}' class="btn btn-info btn-sm"><i class="glyphicon glyphicon-eye-open"></i> View Items</a>
+                </td>                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
              
     </tr>
         </tr>
