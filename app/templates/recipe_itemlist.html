@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {%  block content %}
 <div class="container">
-<h2>Recipe Category: {{categoryr.name}}</h2>
- <p>{{categoryr.description}}</p>
+<h2>Recipe Category: {{category.name}}</h2>
+ <p>{{category.description}}</p>
  <div class ="row">
 
         <a href = '/add_recipeitem?id={category.id}' class = "btn btn-primary btn-sm pull-right"><i class = "glyphicon glyphicon-plus"></i>Add Recipe Item</a>
@@ -21,7 +21,7 @@
           <th scope="row">{{item.id}}</th>
           <td>{{item.name}}</td>
           <td>{{item.description}}</td>
-          <td>{{categoryr.name}}</td>
+          <td>{{category.name}}</td>
         </tr>
        {% endfor %}
         </tbody>
