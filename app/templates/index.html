@@ -7,8 +7,8 @@
     <div class = "container">
         <div class = "row centered_form">
             <div class = "col-sm-6">
-                <form role = "form">
-                    <form class = "form-login">
+                <form role="form" method="POST" action="/login">                    
+                
                         <h2 class = "form-login-heading">Kindly Login</h2>
          
                          <div class="row"> 
@@ -27,7 +27,7 @@
 
                         <div class="row"> 
                             <div class = "col-sm-6" >
-                                <a href="recipe_categorylist.html" class = "btn btn-sm btn-primary btn-block" type = "submit">Sign in</a>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Sign in</button>
                             </div>
                         </div>
 
@@ -37,7 +37,7 @@
                         </div>  
                         
                         <div class="col-sm-6">
-									<span><strong>Or <a href="register.html">Register</a></strong></span>
+									<span><strong>Or <a href="/register">Register</a></strong></span>
 		
 
 								</div>
@@ -46,6 +46,10 @@
 
         </div>
     </div>
-    
+       <script src="static/js/jquery.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

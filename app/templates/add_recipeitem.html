@@ -1,14 +1,11 @@
-<html>
-<head>
-<link href="css/bootstrap.min.css" rel="stylesheet" >
-<title></title>
-</head>
-<body>
+{% extends "base.html" %}
+{%  block content %}
 
+
+<div class = "container">
+      
 <h4> add Recipe Item</h4>
-
-  <br />
-<form>
+<form action="/add_recipeitem" method="post">
     <div class ="row">
         <div class = "col-xs-6 ">
           <div class = "form-group">
@@ -36,5 +33,4 @@
         </div>
     </div>
 </form>
-</body>
-</html>
+{% endblock %}
