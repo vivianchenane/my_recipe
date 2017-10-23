@@ -35,7 +35,7 @@ def register():
 		return redirect('/register')
 
 
-	database_users[username] = dict(email=email, passwword=password)
+	database_users[username] = dict(email=email, password=password)
 	session['username'] = username
 	return redirect('/recipecategorylist')
 
@@ -183,6 +183,21 @@ def deletecTest():
 	index_to_delete = int(id)-1
 	del recipe_categories[index_to_delete]
 	return redirect('/recipecategorylist')
+
+@app.route('/delete_recipeitem')
+def delete():
+    id = request.args.get('id')
+    category = request.args.get('category')
+    if id == None:
+     return redirect('/recipecategorylist')
+
+    index_to_delete = int(id) - 1
+    del recipe_list_items[index_to_delete]
+
+    category_index_to_view = int(category) - 1
+    category_to_view = recipe_categories[category_index_to_view]
+
+    return render_template('recipe_itemlist.html', title='Item List',category_list_itemss=category_list_items,category=category_to_view)
 
 	
 
