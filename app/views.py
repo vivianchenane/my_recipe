@@ -40,27 +40,40 @@ def register():
 	return redirect('/recipecategorylist')
 
 
-@app.route('/login', methods=['GET' ,'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    form=LoginForm()
-    if request.method== 'GET': 
-        return render_template('index.html', form=form, title='Login') 
+    form = LoginForm()
+    if request.method == 'GET':
+        return render_template('index.html', form=form, title='Login')
 
-    if request.method=='POST':
+    if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+
+        print(database_users)
+
+        try:
+            print(database_users[username])
+        except KeyError:
+            print('No Users found')
+            flash('Invalid username, please try again!!')
+
+        try:
+            print(database_users[username]['password'])
+        except KeyError:
+            print('No Users Password found')
+            flash('Invalid password, Please try again!!')
 
         try:
             if database_users[username] and database_users[username]['password'] == password:
                 session['username'] = username
-               
-			   
                 return redirect(url_for('recipecategorylist'))
             else:
+                flash('Invalid username or password, please try again!!')
                 return redirect(url_for('login'))
-        
+
         except (KeyError, ValueError):
-            flash('login failed')
+            flash('Invalid username or password, please try again!!')
             return redirect(url_for('index'))
 
 
